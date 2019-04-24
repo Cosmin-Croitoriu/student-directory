@@ -12,3 +12,6 @@ puts "Steven Wolfe"
 puts "The Jocker"
 puts "Joffrey Baratheon"
 puts "Norman Bates"
+print "Overall we have "
+print 11
+puts " great students"
