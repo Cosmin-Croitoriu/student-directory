@@ -1,19 +1,20 @@
 =begin
-students = [
-  {name: "Dr. Hannibal Lecter", cohort: :november},
-  {name: "Darth Vader", cohort: :november},
-  {name: "Nurse Ratched", cohort: :november},
-  {name: "Michael Corleone", cohort: :november},
-  {name: "Alex DeLarge", cohort: :november},
-  {name: "The Wicked Witch of the West", cohort: :november},
-  {name: "Terminator", cohort: :november},
-  {name: "Freddy Krueger", cohort: :november},
-  {name: "Steven Wolfe", cohort: :november},
-  {name: "The Jocker", cohort: :november},
-  {name: "Joffrey Baratheon", cohort: :november},
-  {name: "Norman Bates", cohort: :november}
-]
+Dr. Hannibal Lecter,november
+Darth Vader,november
+Nurse Ratched,november
+Michael Corleone,november
+Alex DeLarge,november
+The Wicked Witch of the West,november
+Terminator,november
+Freddy Krueger,november
+Steven Wolfe,november
+The Jocker,november
+Joffrey Baratheon,november
+Norman Bates,november
 =end
+
+
+
 @students = []
 
 def input_students
@@ -40,6 +41,10 @@ def process(selection)
     input_students
   when "2"
     show_students
+  when "3"
+    save_students
+  when "4"
+    load_students
   when "9"
     exit
   else
@@ -51,6 +56,7 @@ def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
   puts "3. Saves the students on the file"
+  puts "4. Load from students file"
   puts "9. Exit"
 end
 
@@ -86,5 +92,13 @@ def save_students
   file.close
 end
 
+def load_students
+  file = File.open("students.csv", "r")
+  file.readlines.each do |line|
+  name, cohort = line.chomp.split(',')
+    @students << {name: name, cohort: cohort.to_sym}
+  end
+  file.close
+end
 
 interactive_menu
